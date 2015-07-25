@@ -1,0 +1,26 @@
+{
+    "name": "kevupton/bookings",
+    "description": "Bookings for laravel",
+    "keywords": ["laravel", "bookings", "book", "ticketing", "events"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kevin Upton",
+            "email": "uptonkg@gmail.com"
+        }
+    ],
+    "require": {
+      "php": ">=5.4",
+      "ext-gd": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kevupton\\Bookings\\": "src/"
+        },
+        "files": [
+            "src/Helpers/helpers.php"
+        ]
+    },
+
+    "minimum-stability": "dev"
+}
