@@ -19,7 +19,7 @@
             "Kevupton\\Bookings\\": "src/Kevupton/Bookings/"
         },
         "files": [
-            "src/Helpers/helpers.php"
+            "src/Kevupton/Bookings/Helpers/helpers.php"
         ]
     },
     "extra": {
