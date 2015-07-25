@@ -3,6 +3,7 @@
     "description": "Bookings for laravel",
     "keywords": ["laravel", "bookings", "book", "ticketing", "events"],
     "type": "Extension",
+    "version": "1.0.1",
     "license": "MIT",
     "authors": [
         {
@@ -23,7 +24,7 @@
     },
     "extra": {
         "branch-alias": {
-           "dev-master": "1.0-dev"
+           "dev-master": "1.0.1"
         }
     },
 
