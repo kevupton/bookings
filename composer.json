@@ -2,6 +2,7 @@
     "name": "kevupton/bookings",
     "description": "Bookings for laravel",
     "keywords": ["laravel", "bookings", "book", "ticketing", "events"],
+    "type": "Extension",
     "license": "MIT",
     "authors": [
         {
@@ -10,8 +11,7 @@
         }
     ],
     "require": {
-      "php": ">=5.4",
-      "ext-gd": "*"
+      "php": ">=5.3"
     },
     "autoload": {
         "psr-4": {
@@ -22,5 +22,5 @@
         ]
     },
 
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }

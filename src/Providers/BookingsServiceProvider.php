@@ -1,8 +1,8 @@
-<?php namespace Kevupton\Tickets\Providers;
+<?php namespace Kevupton\Bookings\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class TicketsServiceProvider extends ServiceProvider {
+class BookingsServiceProvider extends ServiceProvider {
 
     /**
      * Bootstrap the application services.
