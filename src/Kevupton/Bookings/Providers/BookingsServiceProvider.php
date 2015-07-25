@@ -11,7 +11,10 @@ class BookingsServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $this->publishes([__DIR__.'/../config/Bookings.php' => config_path('Bookings.php')]);
+        $this->publishes([__DIR__.'/../../../config/Bookings.php' => config_path('bookings.php')]);
+        $this->publishes([
+            __DIR__.'/../../../database/migrations/' => database_path('migrations')
+        ], 'migrations');
     }
 
     /**

@@ -15,11 +15,16 @@
     },
     "autoload": {
         "psr-4": {
-            "Kevupton\\Bookings\\": "src/"
+            "Kevupton\\Bookings\\": "src/Kevupton/Bookings/"
         },
         "files": [
             "src/Helpers/helpers.php"
         ]
+    },
+    "extra": {
+        "branch-alias": {
+           "dev-master": "1.0-dev"
+        }
     },
 
     "minimum-stability": "dev"

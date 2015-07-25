@@ -2,4 +2,5 @@
 
 return array(
     'name' => 'test',
+    'joe' => 'true'
 );
