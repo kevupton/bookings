@@ -1,8 +1,9 @@
 <?php namespace Kevupton\Bookings\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Kevupton\Bookings\Core\AdvModel;
 
-class Equipment extends Model {
+class Equipment extends AdvModel {
     // table name
     protected $table = 'equipment';
     public $timestamps = true;
@@ -21,11 +22,11 @@ class Equipment extends Model {
     );
 
     public function session_equipment() {
-        return $this->belongsToMany('session_equipment');
+        return $this->hasMany(SessionEquipment::class);
     }
 
     public function sessions() {
-        return $this->hasManyThrough('sessions', 'session_equipment');
+        return $this->hasManyThroughCustom(Session::class, SessionEquipment::class,null,'id',null,'session_id');
     }
 
 }
