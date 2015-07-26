@@ -14,7 +14,7 @@ class CreateSessionItemTable extends Migration
     {
         Schema::create('session_items', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('session_id');
+            $table->integer('session_id')->unsigned()->index();
             $table->foreign('session_id')->references('id')->on('sessions');
             $table->string('name');
             $table->integer('price')->unsigned();

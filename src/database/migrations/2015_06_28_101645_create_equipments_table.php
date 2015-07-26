@@ -15,9 +15,7 @@ class CreateEquipmentsTable extends Migration
         Schema::create('equipment', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name', 64);
-            $table->text('description');
-            $table->integer('equipment_type')->unsigned()->index();
-            $table->foreign('equipment_type')->references('id')->on('equipment_types');
+            $table->text('description')->nullable();
             $table->decimal('longitude', 10,7);
             $table->decimal('latitude', 10,7);
             $table->string('address', 150);

@@ -14,7 +14,7 @@ class TicketRepository {
      * @param int $session_id the ID of the session that is attempting to register for.
      * @throws SessionException if the Session is not found.
      */
-    public function beingTicketBooking($session_id) {
+    public static function beingTicketBooking($session_id) {
         $session = SessionRepository::retrieve($session_id);
     }
 }

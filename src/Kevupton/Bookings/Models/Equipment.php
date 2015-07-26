@@ -9,17 +9,23 @@ class Equipment extends Model {
 
     // validation rules
     public static $rules = array(
-        'name' => 'max:64'
-    );
-    // relationships
-    public static $relationsData = array(
-        'users' => array(self::BELONGS_TO_MANY, 'App\Models\User', 'table' => 'user_conversations'),
-        'messages' => array(self::HAS_MANY, 'App\Models\Message'),
-        'seenusers' => array(self::BELONGS_TO_MANY, 'App\Models\User', 'table' => 'seen_conversations')
+        'name' => 'required|max:64',
+        'longitude' => 'required|numeric',
+        'latitude' => 'required|numeric',
+        'address' => 'required|max:150',
+        'qty' => 'numeric|required'
     );
 
     protected $fillable = array(
-        'name'
+        'name',  'longitude', 'latitude', 'address', 'qty'
     );
+
+    public function session_equipment() {
+        return $this->belongsToMany('session_equipment');
+    }
+
+    public function sessions() {
+        return $this->hasManyThrough('sessions', 'session_equipment');
+    }
 
 }
