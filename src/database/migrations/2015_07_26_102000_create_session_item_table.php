@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSessionsTable extends Migration
+class CreateSessionItemTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,13 @@ class CreateSessionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sessions', function(Blueprint $table) {
+        Schema::create('session_items', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('events_id')->unsigned()->nullable()->index();
-            $table->foreign('events_id')->references('id')->on('events');
+            $table->integer('session_id');
+            $table->foreign('session_id')->references('id')->on('sessions');
             $table->string('name');
+            $table->integer('price')->unsigned();
+            $table->integer('qty')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateSessionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('sessions');
+        Schema::drop('session_items');
     }
 }

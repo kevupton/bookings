@@ -12,13 +12,16 @@ class CreateEquipmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('equipments', function(Blueprint $table) {
+        Schema::create('equipment', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('location_id')->unsigned()->nullable()->index();
-            $table->foreign('location_id')->references('id')->on('locations');
-            $table->integer('session_id')->unsigned()->index();
-            $table->foreign('session_id')->references('id')->on('sessions');
-            $table->string('name');
+            $table->string('name', 64);
+            $table->text('description');
+            $table->integer('equipment_type')->unsigned()->index();
+            $table->foreign('equipment_type')->references('id')->on('equipment_types');
+            $table->decimal('longitude', 10,7);
+            $table->decimal('latitude', 10,7);
+            $table->string('address', 150);
+            $table->integer('qty')->unsigned();
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ class CreateEquipmentsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('equipments');
+        Schema::drop('equipment');
     }
 }

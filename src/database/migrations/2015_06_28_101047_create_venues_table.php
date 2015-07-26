@@ -14,8 +14,10 @@ class CreateVenuesTable extends Migration
     {
         Schema::create('venues', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('location_id')->unsigned()->index();
-            $table->foreign('location_id')->references('id')->on('locations');
+            $table->decimal('longitude', 10,7);
+            $table->decimal('latitude', 10,7);
+            $table->string('address', 150);
+            $table->integer('capacity');
             $table->string('name');
             $table->timestamps();
         });

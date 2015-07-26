@@ -14,9 +14,11 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('session_id');
-            $table->foreign('session_id')->references('id')->on('sessions');
-            $table->string('name');
+            $table->integer('session_item_id')->unsigned()->index();
+            $table->foreign('session_item_id')->references('id')->on('session_items');
+            $table->integer('user_id')->unsigned()->index()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('session_id', 64);
             $table->timestamps();
         });
     }
