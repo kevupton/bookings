@@ -1,15 +1,15 @@
 <?php namespace Kevupton\Bookings\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Kevupton\BeastCore\BeastModel;
 
-class SessionEquipment extends Model {
+class SessionEquipment extends BeastModel {
     // table name
     protected $table = 'session_equipment';
     public $timestamps = true;
 
     // validation rules
     public static $rules = array(
-        'session_id' => 'required|max:64',
+        'session_id' => 'required|numeric|references:sessions,id',
         'equipment_id' => 'required|numeric',
         'qty' => 'required|numeric',
     );
@@ -18,12 +18,8 @@ class SessionEquipment extends Model {
         'session_id',  'equipment_id', 'qty'
     );
 
-    public function session_equipment() {
-        return $this->belongsToMany(SessionEquipment::class, 'session_equipment');
-    }
-
-    public function sessions() {
-        return $this->hasManyThrough(Session::class, SessionEquipment::class,'a','b','c');
-    }
-
+    public static $relationsData = array(
+        'sessions' => array(self::BELONGS_TO),
+        'equipment' => array(self::BELONGS_TO),
+    );
 }

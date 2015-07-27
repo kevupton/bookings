@@ -1,20 +1,21 @@
 <?php namespace Kevupton\Bookings\Repositories;
 
+use Kevupton\BeastCore\Repository\BeastRepository;
 use Kevupton\Bookings\Exceptions\SessionException;
 use Kevupton\Bookings\Models\Session;
 
-class SessionRepository {
+class SessionRepository extends BeastRepository {
+    protected $exceptions = [
+        'main' => SessionException::class,
+    ];
+
     /**
-     * Attempts to retrieve a specific session, or throws a SessionException if the session does not exist.
+     * Retrieves the class instance of the specified repository.
      *
-     * @param int $session_id the ID of the session to retrieve
-     * @throws SessionException if the session with the specified ID doesn't exist.
+     * @return string the string instance of the defining class
      */
-    public static function retrieve($session_id) {
-        try {
-            return Session::findOrFail($session_id);
-        } catch(\Exception $e) {
-            throw new SessionException("Session $session_id not found");
-        }
+    function getClass()
+    {
+        return Session::class;
     }
 }

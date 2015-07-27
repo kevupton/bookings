@@ -1,11 +1,19 @@
 <?php namespace Kevupton\Bookings\Repositories;
 
+use Kevupton\BeastCore\Repository\BeastRepository;
 use Kevupton\Bookings\Exceptions\SessionException;
 use Kevupton\Bookings\Exceptions\TicketException;
+use Kevupton\Bookings\Exceptions\TemporaryTicketException;
 use Kevupton\Bookings\Models\Session;
 use Kevupton\Bookings\Models\Ticket;
 
-class TicketRepository {
+class TicketRepository extends BeastRepository {
+    const TICKETING_HOLDING_TIME = 15;
+
+    protected $exceptions = [
+        'main' => TicketException::class,
+        'temp' => TemporaryTicketException::class
+    ];
 
     /**
      * Attempts to begin the ticket registration process by first securing a temporary ticket
@@ -15,24 +23,19 @@ class TicketRepository {
      * @param int $session_id the ID of the session that is attempting to register for.
      * @throws SessionException if the Session is not found.
      */
-    public static function beingTicketBooking($session_id) {
+    public function beingTicketBooking($session_id) {
         $session = SessionRepository::retrieve($session_id);
-        $ticket = self::retrieveTicket(1);
+        $ticket = $this->retrieveByID(1);
         dd($ticket->sessions);
     }
 
     /**
-     * Attempts to retrieve the Ticket by the given ticket ID.
+     * Retrieves the class instance of the specified repository.
      *
-     * @param int $ticket_id the id of the ticket
-     * @return Ticket an instance of the Ticket class.
-     * @throws TicketException if the ticket is not found
+     * @return string the string instance of the defining class
      */
-    public static function retrieveTicket($ticket_id) {
-        try {
-            return Ticket::findOrFail($ticket_id);
-        } catch(\Exception $e) {
-            throw new TicketException("Ticket $ticket_id not found");
-        }
+    function getClass()
+    {
+        return Ticket::class;
     }
 }

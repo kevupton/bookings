@@ -1,23 +1,22 @@
 <?php namespace Kevupton\Bookings\Repositories;
 
 
+use Kevupton\BeastCore\Repository\BeastRepository;
 use Kevupton\Bookings\Exceptions\EquipmentException;
 use Kevupton\Bookings\Models\Equipment;
 
-class EquipmentRepository {
+class EquipmentRepository extends BeastRepository {
+    protected $exceptions = [
+        'main' => EquipmentException::class,
+    ];
 
     /**
-     * Attempts to retrieve the Equipment by the given equipment ID.
+     * Retrieves the class instance of the specified repository.
      *
-     * @param int $equipment_id the id of the equipment
-     * @return Equipment an instance of the Equipment class.
-     * @throws EquipmentException if the equipment is not found
+     * @return string the string instance of the defining class
      */
-    public static function retrieveEquipment($equipment_id) {
-        try {
-            return Equipment::findOrFail($equipment_id);
-        } catch(\Exception $e) {
-            throw new EquipmentException("Equipment $equipment_id not found");
-        }
+    function getClass()
+    {
+        return Equipment::class;
     }
 }

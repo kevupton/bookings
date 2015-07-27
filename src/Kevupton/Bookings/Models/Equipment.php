@@ -1,9 +1,9 @@
 <?php namespace Kevupton\Bookings\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Kevupton\Bookings\Core\AdvModel;
+use Kevupton\BeastCore\BeastModel;
 
-class Equipment extends AdvModel {
+class Equipment extends BeastModel {
     // table name
     protected $table = 'equipment';
     public $timestamps = true;
@@ -18,15 +18,11 @@ class Equipment extends AdvModel {
     );
 
     protected $fillable = array(
-        'name',  'longitude', 'latitude', 'address', 'qty'
+        'name', 'description', 'longitude', 'latitude', 'address', 'qty'
     );
 
-    public function session_equipment() {
-        return $this->hasMany(SessionEquipment::class);
-    }
-
-    public function sessions() {
-        return $this->hasManyThroughCustom(Session::class, SessionEquipment::class,null,'id',null,'session_id');
-    }
-
+    public static $relationsData = array(
+        'session_equipment' => array(self::HAS_MANY, SessionEquipment::class),
+        'sessions' => array(self::HAS_MANY_THROUGH_CUSTOM, Session::class, SessionEquipment::class, null, 'id', null, 'session_id')
+    );
 }

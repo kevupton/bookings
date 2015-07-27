@@ -1,9 +1,26 @@
 <?php namespace Kevupton\Bookings\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Kevupton\BeastCore\BeastModel;
 
-class Venue extends Model {
+class Venue extends BeastModel {
+    // table name
+    protected $table = 'venues';
+    public $timestamps = true;
 
-	//
+    // validation rules
+    public static $rules = array(
+        'longitude' => 'required|numeric',
+        'latitude' => 'required|numeric',
+        'address' => 'required|string|max:150',
+        'capacity' => 'required|numeric',
+        'name' => 'string|max:255'
+    );
 
+    protected $fillable = array(
+        'longitude', 'latitude', 'address', 'capacity', 'name'
+    );
+
+    public static $relationsData = array(
+        'events' => array(self::BELONGS_TO_MANY),
+    );
 }
