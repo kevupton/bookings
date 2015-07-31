@@ -21,6 +21,6 @@ class Venue extends BeastModel {
     );
 
     public static $relationsData = array(
-        'events' => array(self::BELONGS_TO_MANY),
+        'events' => array(self::HAS_MANY_THROUGH_CUSTOM, Event::class, Session::class, null, 'id', null, 'event_id'),
     );
 }

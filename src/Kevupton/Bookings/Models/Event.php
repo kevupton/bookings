@@ -14,10 +14,10 @@ class Event extends BeastModel {
     );
 
     protected $fillable = array(
-        'name',
+        'name'
     );
 
     public static $relationsData = array(
-        'sessions' => array(self::HAS_MANY),
+        'sessions' => array(self::HAS_MANY, Session::class)
     );
 }

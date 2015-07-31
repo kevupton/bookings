@@ -4,7 +4,7 @@ use Kevupton\BeastCore\BeastModel;
 
 class Session extends BeastModel {
     // table name
-    protected $table = 'session';
+    protected $table = 'sessions';
     public $timestamps = true;
 
     // validation rules
@@ -21,7 +21,7 @@ class Session extends BeastModel {
     );
 
     public static $relationsData = array(
-        'session_equipment' => array(self::HAS_MANY),
-        'session_items' => array(self::HAS_MANY),
+        'session_equipment' => array(self::HAS_MANY, SessionEquipment::class),
+        'session_items' => array(self::HAS_MANY, SessionItem::class),
     );
 }
