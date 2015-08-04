@@ -14,6 +14,8 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function(Blueprint $table) {
             $table->increments('id');
+            $table->string('rating_slug', 5)->index()->nullable();
+            $table->foreign('rating_slug')->references('slug')->on('ratings');
             $table->string('name');
             $table->timestamps();
         });

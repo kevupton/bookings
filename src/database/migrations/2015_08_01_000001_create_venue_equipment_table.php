@@ -29,6 +29,6 @@ class CreateVenueEquipmentTable extends Migration
      */
     public function down()
     {
-        Schema::drop('session_equipment');
+        Schema::drop('venue_equipment');
     }
 }
