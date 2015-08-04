@@ -1,6 +1,6 @@
 <?php namespace Kevupton\Bookings\Repositories;
 
-use Kevupton\BeastCore\Repository\BeastRepository;
+use Kevupton\BeastCore\Repositories\BeastRepository;
 use Kevupton\Bookings\Exceptions\SessionException;
 use Kevupton\Bookings\Models\Session;
 

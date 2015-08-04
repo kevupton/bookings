@@ -1,7 +1,7 @@
 <?php namespace Kevupton\Bookings\Repositories;
 
 
-use Kevupton\BeastCore\Repository\BeastRepository;
+use Kevupton\BeastCore\Repositories\BeastRepository;
 use Kevupton\Bookings\Exceptions\EquipmentException;
 use Kevupton\Bookings\Models\Equipment;
 
