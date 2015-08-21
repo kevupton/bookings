@@ -11,6 +11,8 @@ class Event extends BeastModel {
     // validation rules
     public static $rules = array(
         'name' => 'required|max:64',
+        'classification_code' => 'exists:classifications,code',
+        'category_id' => 'required|exists:categories,id'
     );
 
     protected $fillable = array(
@@ -18,6 +20,7 @@ class Event extends BeastModel {
     );
 
     public static $relationsData = array(
-        'sessions' => array(self::HAS_MANY, Session::class)
+        'sessions' => array(self::HAS_MANY, Session::class),
+        'classification' => array(self::BELONGS_TO)
     );
 }

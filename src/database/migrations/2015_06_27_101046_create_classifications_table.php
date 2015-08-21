@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRatingsTable extends Migration
+class CreateClassificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,10 @@ class CreateRatingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ratings', function(Blueprint $table) {
-            $table->string('slug', 5);
+        Schema::create('classifications', function(Blueprint $table) {
+            $table->string('code', 5);
             $table->string('name', 64);
-            $table->primary('slug');
+            $table->primary('code');
         });
     }
 
@@ -26,6 +26,6 @@ class CreateRatingsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ratings');
+        Schema::drop('classifications');
     }
 }

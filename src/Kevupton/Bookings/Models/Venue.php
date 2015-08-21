@@ -13,11 +13,13 @@ class Venue extends BeastModel {
         'latitude' => 'required|numeric',
         'address' => 'required|string|max:150',
         'capacity' => 'required|numeric',
-        'name' => 'string|max:255'
+        'name' => 'string|max:255',
+        'parent_venue_id' => 'exists:venues,id',
+        'is_bookable' => 'required|boolean'
     );
 
     protected $fillable = array(
-        'longitude', 'latitude', 'address', 'capacity', 'name'
+        'longitude', 'latitude', 'address', 'capacity', 'name', 'parent_venue_id', 'is_bookable'
     );
 
     public static $relationsData = array(

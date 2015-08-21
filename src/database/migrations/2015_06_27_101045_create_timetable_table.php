@@ -13,22 +13,34 @@ class CreateTimetableTable extends Migration
     public function up()
     {
         Schema::create('timetables', function(Blueprint $table) {
+            $table->increments('id');
             $table->integer('available_for_id')->unsigned()->index();
             $table->string('available_for', 128);
-            $table->text('sunday');
-            $table->text('monday');
-            $table->text('tuesday');
-            $table->text('wednesday');
-            $table->text('thursday');
-            $table->text('friday');
-            //{ available : {0600-1200, 1400-1700} }
-            $table->text('saturday');
-            // {
-            // {date : 24/12/92, available : {} },
-            // {date : 24/11/93, available : {} }
-            // }
-            $table->text('exceptions');
-            // define all columns as an array cast on the model
+            $table->unique(array('available_for_id','available_for'));
+        });
+
+        Schema::create('timetable_days', function(Blueprint $table) {
+            $table->integer('timetable_id')->unsigned();
+            $table->foreign('timetable_id')->references('id')->on('timetables')->onDelete('restrict')->onUpdate('cascade');
+            $table->enum('day', array(
+                'MONDAY',
+                'TUESDAY',
+                'WEDNESDAY',
+                'THURSDAY',
+                'FRIDAY',
+                'SATURDAY',
+                'SUNDAY'
+            ));
+            $table->dateTime("from");
+            $table->dateTime("to");
+        });
+
+        Schema::create('timetable_exceptions', function(Blueprint $table) {
+            $table->integer('timetable_id')->unsigned();
+            $table->foreign('timetable_id')->references('id')->on('timetables')->onDelete('restrict')->onUpdate('cascade');
+            $table->boolean('is_available')->default(0);
+            $table->dateTime('from');
+            $table->dateTime('to');
         });
     }
 
@@ -39,6 +51,8 @@ class CreateTimetableTable extends Migration
      */
     public function down()
     {
-        Schema::drop('timetables');
+        Schema::dropIfExists('timetable_exceptions');
+        Schema::dropIfExists('timetable_days');
+        Schema::dropIfExists('timetables');
     }
 }
