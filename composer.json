@@ -12,7 +12,8 @@
     ],
     "require": {
         "php": ">=5.3",
-        "kevupton/beastcore": "^1.0"
+        "kevupton/beastcore": "^1.0",
+        "kevupton/timetables": "^1.0"
     },
     "autoload": {
         "psr-4": {

@@ -1,6 +1,7 @@
 <?php namespace Kevupton\Bookings\Models;
 
 use Kevupton\BeastCore\BeastModel;
+use Kevupton\Timetables\Timetable;
 
 class Venue extends BeastModel {
     // table name
@@ -24,5 +25,10 @@ class Venue extends BeastModel {
 
     public static $relationsData = array(
         'events' => array(self::HAS_MANY_THROUGH_CUSTOM, Event::class, Session::class, null, 'id', null, 'event_id'),
+        'timetable' => array(self::MORPH_ONE,Timetable::class,'for')
     );
+
+//    public function test() {
+//        return $this->morphOne($related,$name, $type, $id, $localKey);
+//    }
 }

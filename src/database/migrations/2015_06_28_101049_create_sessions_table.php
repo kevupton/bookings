@@ -19,7 +19,6 @@ class CreateSessionsTable extends Migration
             $table->integer('venue_id')->unsigned()->index();
             $table->foreign('venue_id')->references('id')->on('venues');
             $table->integer('duration')->unsigned();
-            $table->dateTime('datetime');
             $table->string('name');
             $table->timestamps();
         });
