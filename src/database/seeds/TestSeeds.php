@@ -1,12 +1,26 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
+use Kevupton\Bookings\Models\Category;
+use Kevupton\Bookings\Models\Session;
+use Kevupton\Timetables\Repositories\TimetableDayRepository;
+use Kevupton\Timetables\Timetable;
 
 class TestSeeds extends Seeder {
     public function run()
     {
-        \App\User::insert(array(
+        Category::create(array(
+            'id' => 1,
+            'category' => 'TestParent',
+        ));
+        Category::create(array(
+            'id' => 2,
+            'category' => 'TestChild',
+            'parent_id' => 1
+        ));
+
+        User::insert(array(
             'name' => 'joe',
             'email' => 'foo@bar.com',
             'password' => 'adasdas',
@@ -20,33 +34,58 @@ class TestSeeds extends Seeder {
             'qty' => 100
         ));
 
-        \Kevupton\Bookings\Models\Venue::insert(array(
+        \Kevupton\Bookings\Models\Classification::insert(array(
+            'code' => 'PG',
+            'name' => 'Parental Guidance'
+        ));
+
+        $event = \Kevupton\Bookings\Models\Event::create(array(
+            'name' => 'How',
+            'category_id' => 2,
+            'classification_code' => 'PG'
+        ));
+
+        $insert = \Kevupton\Bookings\Models\Venue::create(array(
             'name' => 'SmartVille',
+            'is_bookable' => 1,
             'longitude' => 0,
             'latitude' => 0,
             'address' => 'Wowo',
             'capacity' => 100,
         ));
 
-        \Kevupton\Bookings\Models\Event::insert(array(
-            'name' => 'How'
+        $timetable = $insert->timetable()->create(array());
+        foreach (TimetableDayRepository::daysOfWeek() as $day) {
+            $timetable->days()->create(array(
+                'day' => $day,
+                'from' => '07:01:00',
+                'to' => '09:01:01'
+            ));
+        }
+        $timetable->specifics()->create(array(
+            'is_available' => 1,
+            'from' => '2017-02-01 09:01:01',
+            'to' => '2017-03-01 09:01:01',
         ));
 
-        \Kevupton\Bookings\Models\Session::insert(array(
-            array(
-                'event_id' => 1,
-                'venue_id' => 1,
-                'duration' => 60,
-                'datetime' => '2015-01-01',
-                'name' => 'pinokio'
-            ),
-            array(
-                'event_id' => 1,
-                'venue_id' => 1,
-                'duration' => 120,
-                'datetime' => '2015-01-02',
-                'name' => 'pinokio2'
-            )
+        Session::create(array(
+            'event_id' => $event->id,
+            'venue_id' => $insert->id,
+            'duration' => 60,
+            'timetable_id' => $timetable->id,
+            'from' =>  '2017-02-01 09:01:01',
+            'to' => '2017-03-01 09:01:01',
+            'name' => 'pinokio'
+        ));
+
+        Session::create(array(
+            'event_id' => $event->id,
+            'venue_id' => $insert->id,
+            'duration' => 120,
+            'timetable_id' => $timetable->id,
+            'from' =>  '2017-02-01 08:01:01',
+            'to' => '2017-02-01 08:31:01',
+            'name' => 'pinokio2'
         ));
 
         \Kevupton\Bookings\Models\SessionEquipment::insert(array(
