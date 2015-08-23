@@ -56,12 +56,24 @@ class TestSeeds extends Seeder {
 
         $timetable = $insert->timetable()->create(array());
         foreach (TimetableDayRepository::daysOfWeek() as $day) {
-            $timetable->days()->create(array(
+            $$day = $timetable->days()->create(array(
                 'day' => $day,
                 'from' => '07:01:00',
                 'to' => '09:01:01'
             ));
         }
+
+        $MONDAY->to = '24:00:00.000000';
+        $MONDAY->save();
+        $TUESDAY->from = '00:00:00.000000';
+        $TUESDAY->to = '24:00:00.000000';
+        $TUESDAY->save();
+        $WEDNESDAY->from = '00:00:00.000000';
+        $WEDNESDAY->to = '24:00:00.000000';
+        $WEDNESDAY->save();
+        $THURSDAY->from = '00:00:00.000000';
+        $THURSDAY->save();
+
         $timetable->specifics()->create(array(
             'is_available' => 1,
             'from' => '2017-02-01 09:01:01',
