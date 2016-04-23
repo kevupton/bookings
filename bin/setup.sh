@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-if [ ! -d "laravel" ]; then
+if [ ! -f "laravel/composer.json" ]; then
+    rm -rf laravel
     composer create-project laravel/laravel
     cd laravel
     composer update
