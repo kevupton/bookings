@@ -27,8 +27,10 @@ install:
   - mysql -e 'create database hyn;' -uroot
   - mysql -e "grant all privileges on *.* to 'travis'@'localhost' with grant option;" -uroot
   # create a new laravel project in the subfolder laravel (default composer behaviour)
-  - composer create-project laravel/laravel
-  - cd laravel && composer require kevupton/bookings && cd ..
+  - if [ ! -d "$DIRECTORY" ]; then \
+      composer create-project laravel/laravel && \
+      cd laravel && composer require kevupton/bookings && cd .. \
+    fi
   # set global variables
   - export DB_USERNAME=travis DB_DATABASE=hyn DB_PASSWORD= QUEUE_DRIVER=sync
 
