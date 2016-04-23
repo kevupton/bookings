@@ -37,5 +37,8 @@ install:
   - export DB_USERNAME=travis DB_DATABASE=hyn DB_PASSWORD= QUEUE_DRIVER=sync
 
 script:
-  - phpunit laravel/vendor/kevupton
+  - cd laravel
+  - php artisan vendor:publish #puts all migrations from packages into migrations folder
+  - php artisan migrate
+  - phpunit vendor/kevupton
   # run the script calling unit tests and so on
