@@ -25,18 +25,8 @@ install:
   - export DB_USERNAME=travis DB_DATABASE=hyn DB_PASSWORD= QUEUE_DRIVER=sync
   - mysql -e 'create database hyn;' -uroot
   - mysql -e "grant all privileges on *.* to 'travis'@'localhost' with grant option;" -uroot
-
-  - if [ ! -d "laravel" ]; then
-      composer create-project laravel/laravel
-      && composer update
-      && cd laravel
-      && composer require kevupton/bookings
-      && echo "$(awk '/'\''providers'\'' \=\> \[/ { print; print "Kevupton\\Bookings\\Providers\\BookingsServiceProvider::class,"; next }1'
-           config/app.php)" > config/app.php
-      && php artisan vendor:publish
-      && php artisan migrate;
-    fi
-
+  - export PACKAGE_PROVIDER=Kevupton\\Bookings\\Providers\\BookingsServiceProvider::class
+  - bin/setup.sh
 
 script:
   - composer update
