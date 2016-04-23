@@ -26,14 +26,16 @@ install:
   - mysql -e 'create database hyn;' -uroot
   - mysql -e "grant all privileges on *.* to 'travis'@'localhost' with grant option;" -uroot
 
-  - [ ! -d "laravel" ] && composer create-project laravel/laravel
+  - if [ ! -d "laravel" ]; then
+      composer create-project laravel/laravel
       && composer update
       && cd laravel
       && composer require kevupton/bookings
       && echo "$(awk '/'\''providers'\'' \=\> \[/ { print; print "Kevupton\\Bookings\\Providers\\BookingsServiceProvider::class,"; next }1'
            config/app.php)" > config/app.php
       && php artisan vendor:publish
-      && php artisan migrate || true
+      && php artisan migrate;
+    fi
 
 
 script:
