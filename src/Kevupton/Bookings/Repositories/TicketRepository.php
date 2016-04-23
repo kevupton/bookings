@@ -1,13 +1,12 @@
 <?php namespace Kevupton\Bookings\Repositories;
 
-use Kevupton\BeastCore\Repositories\BeastRepository;
 use Kevupton\Bookings\Exceptions\SessionException;
 use Kevupton\Bookings\Exceptions\TicketException;
 use Kevupton\Bookings\Exceptions\TemporaryTicketException;
-use Kevupton\Bookings\Models\Session;
 use Kevupton\Bookings\Models\Ticket;
+use Kevupton\Ethereal\Repositories\Repository;
 
-class TicketRepository extends BeastRepository {
+class TicketRepository extends Repository {
     const TICKETING_HOLDING_TIME = 15;
 
     protected $exceptions = [
@@ -23,7 +22,7 @@ class TicketRepository extends BeastRepository {
      * @param int $session_id the ID of the session that is attempting to register for.
      * @throws SessionException if the Session is not found.
      */
-    public function beingTicketBooking($session_id) {
+    public function beginTicketBooking($session_id) {
         $session = SessionRepository::retrieve($session_id);
         $ticket = $this->retrieveByID(1);
         dd($ticket->sessions);

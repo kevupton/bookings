@@ -1,6 +1,6 @@
 <?php namespace Kevupton\Bookings\Models;
 
-use Kevupton\BeastCore\MorphModel;
+use Kevupton\Ethereal\Models\MorphModel;
 use Kevupton\Timetables\TimetableBooking;
 
 class Session extends MorphModel {

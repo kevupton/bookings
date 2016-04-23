@@ -1,9 +1,9 @@
 <?php namespace Kevupton\Bookings\Models;
 
-use Kevupton\BeastCore\BeastModel;
+use Kevupton\Ethereal\Models\Ethereal;
 use Kevupton\Timetables\Timetable;
 
-class Venue extends BeastModel {
+class Venue extends Ethereal {
     // table name
     protected $table = 'venues';
     public $timestamps = true;

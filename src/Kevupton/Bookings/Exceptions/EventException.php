@@ -1,3 +1,5 @@
 <?php namespace Kevupton\Bookings\Exceptions;
 
-class EventException extends \Exception {}
+use Kevupton\Ethereal\Exceptions\EtherealException;
+
+class EventException extends EtherealException {}

@@ -7,12 +7,11 @@
     "authors": [
         {
             "name": "Kevin Upton",
-            "email": "uptonkg@gmail.com"
+            "email": "kevin@upton.tech"
         }
     ],
     "require": {
         "php": ">=5.3",
-        "kevupton/beastcore": "^1.0",
         "kevupton/timetables": "^1.0"
     },
     "autoload": {

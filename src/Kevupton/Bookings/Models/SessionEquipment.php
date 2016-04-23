@@ -1,8 +1,8 @@
 <?php namespace Kevupton\Bookings\Models;
 
-use Kevupton\BeastCore\BeastModel;
+use Kevupton\Ethereal\Models\Ethereal;
 
-class SessionEquipment extends BeastModel {
+class SessionEquipment extends Ethereal {
     // table name
     protected $table = 'session_equipment';
     public $timestamps = true;

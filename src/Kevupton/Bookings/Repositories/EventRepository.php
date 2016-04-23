@@ -1,11 +1,11 @@
 <?php namespace Kevupton\Bookings\Repositories;
 
 use Illuminate\Database\Eloquent\Collection;
-use Kevupton\BeastCore\Repositories\BeastRepository;
 use Kevupton\Bookings\Exceptions\EventException;
 use Kevupton\Bookings\Models\Event;
+use Kevupton\Ethereal\Repositories\Repository;
 
-class EventRepository extends BeastRepository {
+class EventRepository extends Repository {
     protected $exceptions = [
         'main' => EventException::class,
     ];

@@ -1,9 +1,9 @@
 <?php namespace Kevupton\Bookings\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Kevupton\BeastCore\BeastModel;
 
-class Event extends BeastModel {
+use Kevupton\Ethereal\Models\Ethereal;
+
+class Event extends Ethereal {
     // table name
     protected $table = 'events';
     public $timestamps = true;

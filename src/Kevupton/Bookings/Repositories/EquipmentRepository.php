@@ -1,11 +1,11 @@
 <?php namespace Kevupton\Bookings\Repositories;
 
 
-use Kevupton\BeastCore\Repositories\BeastRepository;
 use Kevupton\Bookings\Exceptions\EquipmentException;
 use Kevupton\Bookings\Models\Equipment;
+use Kevupton\Ethereal\Repositories\Repository;
 
-class EquipmentRepository extends BeastRepository {
+class EquipmentRepository extends Repository {
     protected $exceptions = [
         'main' => EquipmentException::class,
     ];

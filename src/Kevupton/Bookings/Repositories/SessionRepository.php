@@ -1,10 +1,10 @@
 <?php namespace Kevupton\Bookings\Repositories;
 
-use Kevupton\BeastCore\Repositories\BeastRepository;
 use Kevupton\Bookings\Exceptions\SessionException;
 use Kevupton\Bookings\Models\Session;
+use Kevupton\Ethereal\Repositories\Repository;
 
-class SessionRepository extends BeastRepository {
+class SessionRepository extends Repository {
     protected $exceptions = [
         'main' => SessionException::class,
     ];

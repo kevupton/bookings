@@ -1,3 +1,5 @@
 <?php namespace Kevupton\Bookings\Exceptions;
 
-class TemporaryTicketException extends \Exception {}
+use Kevupton\Ethereal\Exceptions\EtherealException;
+
+class TemporaryTicketException extends EtherealException {}

@@ -1,9 +1,8 @@
 <?php namespace Kevupton\Bookings\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Kevupton\BeastCore\BeastModel;
+use Kevupton\Ethereal\Models\Ethereal;
 
-class Equipment extends BeastModel {
+class Equipment extends Ethereal {
     // table name
     protected $table = 'equipment';
     public $timestamps = true;

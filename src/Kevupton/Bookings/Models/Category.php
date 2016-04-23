@@ -1,8 +1,8 @@
 <?php namespace Kevupton\Bookings\Models;
 
-use Kevupton\BeastCore\BeastModel;
+use Kevupton\Ethereal\Models\Ethereal;
 
-class Category extends BeastModel {
+class Category extends Ethereal {
 
     protected $table = 'categories';
     // validation rules
