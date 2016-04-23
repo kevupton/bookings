@@ -36,5 +36,6 @@ install:
   # set global variables
   - export DB_USERNAME=travis DB_DATABASE=hyn DB_PASSWORD= QUEUE_DRIVER=sync
 
-script: ls
+script:
+  - phpunit laravel/vendor/kevupton
   # run the script calling unit tests and so on
