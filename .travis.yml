@@ -21,14 +21,11 @@ cache:
     - laravel
 
 before_install:
-  - composer create-project laravel/laravel;
-  - cd laravel;
+  - composer create-project laravel/laravel
+  - cd laravel
   - composer require kevupton/bookings
   - awk '/'\''providers'\'' \=\> \[/ { print; print "Kevupton\\Bookings\\Providers\\BookingsServiceProvider::class,"; next }1'
            config/app.php > config/app.php
-  - composer update
-  - php artisan vendor:publish
-  - php artisan migrate
 
 install:
   # create a new database for the hyn connection
@@ -38,6 +35,7 @@ install:
   - export DB_USERNAME=travis DB_DATABASE=hyn DB_PASSWORD= QUEUE_DRIVER=sync
 
 script:
+  - cat config/app.php
   - composer update
   - php artisan vendor:publish #puts all migrations from packages into migrations folder
   - php artisan migrate
