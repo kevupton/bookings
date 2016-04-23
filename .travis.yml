@@ -28,10 +28,12 @@ install:
   - mysql -e "grant all privileges on *.* to 'travis'@'localhost' with grant option;" -uroot
   # create a new laravel project in the subfolder laravel (default composer behaviour)
   - if [ ! -d "laravel" ]; then
-      composer create-project laravel/laravel &&
-      cd laravel && composer require kevupton/bookings &&
-      awk '/'\''providers'\'' \=\> \[/ { print; print "Kevupton\\Bookings\\Providers\\BookingsServiceProvider::class,"; next }1' config/app.php
-      && cd ..;
+      composer create-project laravel/laravel;
+      cd laravel && composer require kevupton/booking;
+      awk '/'\''providers'\'' \=\> \[/ { print; print "Kevupton\\Bookings\\Providers\\BookingsServiceProvider::class,"; next }1' config/app.php;
+      php artisan vendor:publish;
+      php artisan migrate;
+      cd ..;
     fi
   # set global variables
   - export DB_USERNAME=travis DB_DATABASE=hyn DB_PASSWORD= QUEUE_DRIVER=sync
@@ -42,7 +44,6 @@ script:
   - php artisan vendor:publish #puts all migrations from packages into migrations folder
   - php artisan migrate
   - phpunit vendor/kevupton
-  - cd ..
 
 
   # run the script calling unit tests and so on
