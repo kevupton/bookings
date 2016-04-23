@@ -27,7 +27,7 @@ install:
   - mysql -e 'create database hyn;' -uroot
   - mysql -e "grant all privileges on *.* to 'travis'@'localhost' with grant option;" -uroot
   # create a new laravel project in the subfolder laravel (default composer behaviour)
-  - if [ ! -d "$DIRECTORY" ]; then \
+  - if [ ! -d "laravel" ]; then \
       composer create-project laravel/laravel && \
       cd laravel && composer require kevupton/bookings && cd .. \
     fi
