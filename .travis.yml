@@ -37,5 +37,5 @@ install:
   - export DB_USERNAME=travis DB_DATABASE=hyn DB_PASSWORD= QUEUE_DRIVER=sync
 
 script:
-  - phpunit laravel/vendor/kevupton
+  - phpunit vendor/kevupton
   # run the script calling unit tests and so on
