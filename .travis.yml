@@ -29,6 +29,7 @@ install:
   - bin/setup.sh
 
 script:
+  - cd laravel
   - composer update
   - php artisan vendor:publish #puts all migrations from packages into migrations folder
   - php artisan migrate
