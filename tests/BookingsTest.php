@@ -9,6 +9,6 @@ class BookingsTest extends TestCase
      */
     public function testBasicExample()
     {
-        echo "Testing kevupton/bookings";
+        echo __DIR__;
     }
 }

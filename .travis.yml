@@ -38,7 +38,9 @@ install:
 
 script:
   - cd laravel
+  - composer update
   - php artisan vendor:publish #puts all migrations from packages into migrations folder
   - php artisan migrate
   - phpunit vendor/kevupton
+  - cd ..
   # run the script calling unit tests and so on
