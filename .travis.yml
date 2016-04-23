@@ -16,6 +16,10 @@ matrix:
   allow_failures:
     - php: hhvm
 
+cache:
+  directories:
+    - laravel
+
 install:
   # create a new database for the hyn connection
   - export DB_USERNAME=travis DB_DATABASE=hyn DB_PASSWORD= QUEUE_DRIVER=sync
@@ -26,9 +30,9 @@ install:
 
 script:
   - cd laravel
-    && composer update
-    && php artisan vendor:publish
-    && php artisan migrate
-    && phpunit vendor/kevupton
+  - composer update
+  - php artisan vendor:publish
+  - php artisan migrate
+  - phpunit vendor/kevupton
 
   # run the script calling unit tests and so on
