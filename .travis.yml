@@ -33,6 +33,7 @@ install:
   # create a new laravel project in the subfolder laravel (default composer behaviour)
   - composer create-project laravel/laravel
   - cd laravel && composer require kevupton/bookings
+  - ls
   # set global variables
   - export DB_USERNAME=travis DB_DATABASE=hyn DB_PASSWORD= QUEUE_DRIVER=sync
 
