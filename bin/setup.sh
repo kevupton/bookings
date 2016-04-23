@@ -9,5 +9,6 @@ if [ ! -f "laravel/composer.json" ]; then
        config/app.php)" > config/app.php
     php artisan vendor:publish
     php artisan migrate
+    echo "$PACKAGE_PROVIDER"
     cd ..
 fi
