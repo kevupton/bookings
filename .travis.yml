@@ -22,18 +22,21 @@ cache:
 
 install:
   # create a new database for the hyn connection
+  - export DB_USERNAME=travis DB_DATABASE=hyn DB_PASSWORD= QUEUE_DRIVER=sync
   - mysql -e 'create database hyn;' -uroot
   - mysql -e "grant all privileges on *.* to 'travis'@'localhost' with grant option;" -uroot
+
   - composer create-project laravel/laravel
-  - cd laravel
-  - composer require kevupton/bookings
-  - echo "$(awk '/'\''providers'\'' \=\> \[/ { print; print "Kevupton\\Bookings\\Providers\\BookingsServiceProvider::class,"; next }1' \
+      && composer update
+      && cd laravel
+      && composer require kevupton/bookings
+      && echo "$(awk '/'\''providers'\'' \=\> \[/ { print; print "Kevupton\\Bookings\\Providers\\BookingsServiceProvider::class,"; next }1' \
            config/app.php)" > config/app.php
-  # set global variables
-  - export DB_USERNAME=travis DB_DATABASE=hyn DB_PASSWORD= QUEUE_DRIVER=sync
+      && php artisan vendor:publish
+      && php artisan migrate
+
 
 script:
-  - composer update
   - php artisan vendor:publish #puts all migrations from packages into migrations folder
   - php artisan migrate
   - phpunit vendor/kevupton
