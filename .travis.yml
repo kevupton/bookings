@@ -13,6 +13,10 @@ addons:
     - system.hyn.me
     - tenant.hyn.me
 
+cache:
+  directories:
+    - laravel
+
 install:
   # fix ipv6 issue that prevented composer requests and resulted in failing builds
   - sudo sh -c "echo 'precedence ::ffff:0:0/96  100' >> /etc/gai.conf"
@@ -27,12 +31,12 @@ install:
   - mysql -e "grant all privileges on *.* to 'travis'@'localhost' with grant option;" -uroot
   # create a new laravel project in the subfolder laravel (default composer behaviour)
   - composer create-project laravel/laravel
+  - cd laravel && composer require kevupton/bookings
   # set global variables
   - export DB_USERNAME=travis DB_DATABASE=hyn DB_PASSWORD= QUEUE_DRIVER=sync
 
 script:
   # run the script calling unit tests and so on
-  - composer require kevupton/bookings
 
 
 after_script:
