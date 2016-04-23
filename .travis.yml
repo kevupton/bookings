@@ -31,7 +31,7 @@ install:
       composer create-project laravel/laravel &&
       cd laravel && composer require kevupton/bookings &&
       awk '/'\''providers'\'' \=\> \[/ { print; print "Kevupton\\Bookings\\Providers\\BookingsServiceProvider::class,"; next }1' config/app.php
-      && cd ..
+      && cd ..;
     fi
   # set global variables
   - export DB_USERNAME=travis DB_DATABASE=hyn DB_PASSWORD= QUEUE_DRIVER=sync
