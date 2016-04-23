@@ -8,10 +8,11 @@ php:
   - 7.0
   - hhvm
 
-addons:
-  hosts:
-    - system.hyn.me
-    - tenant.hyn.me
+matrix:
+  fast_finish: true
+
+  allow_failures:
+    - php: hhvm
 
 cache:
   directories:
@@ -37,7 +38,3 @@ install:
 
 script:
   # run the script calling unit tests and so on
-
-
-after_script:
-  - if [[ $TRAVIS_PHP_VERSION != '7.0' ]]; then php vendor/bin/ocular code-coverage:upload --format=php-clover ${TRAVIS_BUILD_DIR}/coverage.clover; fi
