@@ -20,19 +20,20 @@ cache:
   directories:
     - laravel
 
+services: mysql
+
 install:
   # create a new database for the hyn connection
   - export DB_USERNAME=travis DB_DATABASE=hyn DB_PASSWORD= QUEUE_DRIVER=sync
-  - mysql -e 'create database hyn;' -uroot
-  - mysql -e "grant all privileges on *.* to 'travis'@'localhost' with grant option;" -uroot
   - export PACKAGE_PROVIDER=Kevupton\\\\Bookings\\\\Providers\\\\BookingsServiceProvider::class
-  - bin/setup.sh
+  - export SEED_CLASS=TestSeeds::class
+  - export PACKAGE_NAME=kevupton/bookings
+  - curl -s https://raw.githubusercontent.com/kevupton/docker-laravel-tests/master/setup.sh | bash
 
 script:
-  - cd laravel
   - composer update
   - php artisan vendor:publish
-  - php artisan migrate
-  - phpunit vendor/kevupton
+  - php artisan migrate --db:seed
+  - phpunit "vendor/$PACKAGE_NAME"
 
   # run the script calling unit tests and so on
