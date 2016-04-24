@@ -5,6 +5,8 @@ use Kevupton\Ethereal\Models\Ethereal;
 class Category extends Ethereal {
 
     protected $table = 'categories';
+    public $timestamps = false;
+
     // validation rules
     public static $rules = array(
         'category' => 'required|max:30',

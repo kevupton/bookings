@@ -5,7 +5,6 @@ use Kevupton\Ethereal\Models\Ethereal;
 class VenueEquipment extends Ethereal {
     // table name
     protected $table = 'venue_equipment';
-    public $timestamps = true;
     protected $primaryKey = array('venue_id', 'equipment_id');
 
     // validation rules

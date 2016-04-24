@@ -5,7 +5,6 @@ use Illuminate\Database\Seeder;
 use Kevupton\Bookings\Models\Category;
 use Kevupton\Bookings\Models\Session;
 use Kevupton\Timetables\Repositories\TimetableDayRepository;
-use Kevupton\Timetables\Timetable;
 
 class TestSeeds extends Seeder {
     public function run()

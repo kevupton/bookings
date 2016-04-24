@@ -5,7 +5,6 @@ use Kevupton\Ethereal\Models\Ethereal;
 class Equipment extends Ethereal {
     // table name
     protected $table = 'equipment';
-    public $timestamps = true;
 
     // validation rules
     public static $rules = array(

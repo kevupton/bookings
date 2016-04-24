@@ -6,7 +6,6 @@ use Kevupton\Timetables\Timetable;
 class Venue extends Ethereal {
     // table name
     protected $table = 'venues';
-    public $timestamps = true;
 
     // validation rules
     public static $rules = array(

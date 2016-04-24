@@ -6,7 +6,6 @@ use Kevupton\Ethereal\Models\Ethereal;
 class SessionItem extends Ethereal {
     // table name
     protected $table = 'session_items';
-    public $timestamps = true;
 
     // validation rules
     public static $rules = array(

@@ -5,7 +5,6 @@ use Kevupton\Ethereal\Models\Ethereal;
 class SessionEquipment extends Ethereal {
     // table name
     protected $table = 'session_equipment';
-    public $timestamps = true;
     protected $primaryKey = array('session_id', 'equipment_id');
 
     // validation rules

@@ -6,7 +6,6 @@ class Classification extends Ethereal {
     // table name
     protected $table = 'classifications';
     public $primaryKey = 'code';
-    public $timestamps = true;
 
     // validation rules
     public static $rules = array(

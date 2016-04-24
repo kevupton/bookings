@@ -6,7 +6,6 @@ use Kevupton\Ethereal\Models\Ethereal;
 class Ticket extends Ethereal {
     // table name
     protected $table = 'tickets';
-    public $timestamps = true;
 
     // validation rules
     public static $rules = array(

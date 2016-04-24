@@ -6,7 +6,6 @@ use Kevupton\Timetables\TimetableBooking;
 class Session extends MorphModel {
     // table name
     protected $table = 'sessions';
-    public $timestamps = true;
 
     protected $morphBy = 'for';
     protected $morphTable = 'timetable_bookings';
