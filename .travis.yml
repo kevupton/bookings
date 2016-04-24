@@ -31,6 +31,7 @@ install:
   - curl -s https://raw.githubusercontent.com/kevupton/docker-laravel-tests/master/setup.sh | bash
 
 script:
+  - cd laravel
   - composer update
   - php artisan vendor:publish
   - php artisan migrate --db:seed
