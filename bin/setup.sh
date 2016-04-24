@@ -5,6 +5,7 @@ if [ ! -f "laravel/composer.json" ]; then
     cd laravel
     composer update
     composer require kevupton/bookings
+    awk '/'\''providers'\''.*?\[/ { print; print "'$PACKAGE_PROVIDER',"; next }1' \
        config/app.php
     echo "$(awk '/'\''providers'\'' \=\> \[/ { print; print "'$PACKAGE_PROVIDER',"; next }1' \
        config/app.php)" > config/app.php
