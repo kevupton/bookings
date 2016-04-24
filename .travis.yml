@@ -25,7 +25,7 @@ install:
   - export DB_USERNAME=travis DB_DATABASE=hyn DB_PASSWORD= QUEUE_DRIVER=sync
   - mysql -e 'create database hyn;' -uroot
   - mysql -e "grant all privileges on *.* to 'travis'@'localhost' with grant option;" -uroot
-  - export PACKAGE_PROVIDER=Kevupton\\Bookings\\Providers\\BookingsServiceProvider::class
+  - export PACKAGE_PROVIDER=Kevupton\\\\Bookings\\\\Providers\\\\BookingsServiceProvider::class
   - bin/setup.sh
 
 script:
