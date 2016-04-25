@@ -25,9 +25,9 @@ services: mysql
 install:
   # create a new database for the hyn connection
   - export DB_USERNAME=travis DB_DATABASE=hyn DB_PASSWORD= QUEUE_DRIVER=sync
-  - export PACKAGE_PROVIDER=
+  - export PACKAGE_PROVIDER="
     Kevupton\\\\Bookings\\\\Providers\\\\BookingsServiceProvider::class,
-    Kevupton\\\\Timetables\\\\Providers\\\\TimetablesServiceProvider::class
+    Kevupton\\\\Timetables\\\\Providers\\\\TimetablesServiceProvider::class"
   - export SEED_CLASS=TestSeeds::class
   - export PACKAGE_NAME=kevupton/bookings
   - curl -s https://raw.githubusercontent.com/kevupton/docker-laravel-tests/master/setup.sh | bash
